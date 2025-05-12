@@ -10,7 +10,7 @@ header:
 ---
 
 <section class="about-hero text-center">
-  <h1>Hello, I'm Jeremy Monnolly</h1>
+  <h1>Hello, I'm Jeremy Monnolly </h1>
   <p class="lead">
     Adaptable, curious, and passionate about creating technology that enhances people's lives.
   </p>
