@@ -1,0 +1,112 @@
+#masthead .header-title,
+#masthead .header-slogan {
+  display: none;
+}
+
+/* Modal styling fixes */
+.reveal { 
+  position: fixed !important; 
+  top: 50% !important; 
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto;
+  z-index: 9999;
+  padding: 0;
+  display: none;
+}
+
+/* Target Foundation's open class */
+.reveal.open {
+  display: block !important;
+}
+
+.reveal img { 
+  width: auto; 
+  height: auto; 
+  max-height: 80vh; 
+  max-width: 100%;
+  margin: 0;
+}
+
+.reveal .close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 30px;
+  line-height: 30px;
+  cursor: pointer;
+  background: rgba(255,255,255,0.8);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  border: 2px solid #666;
+  color: #333;
+  text-decoration: none;
+}
+
+.reveal-modal-bg {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.75); /* Darker background for better contrast */
+  z-index: 9998;
+  display: none;
+  top: 0;
+  left: 0;
+}
+.gallery a {
+  cursor: pointer;
+}
+/* ── Projects Page — look & feel ─────────────────────────────── */
+.projects-hero {
+  text-align: center;
+  margin-bottom: 2.5rem;
+
+  h1 { margin-bottom: .25rem; font-weight: 600; }
+  .lead { color: #666; }
+}
+
+/* CSS Grid: 1-column → 2 → 3 with graceful fallback            */
+.projects-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-gap: 1.8rem;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+.project-card {
+  background: #fff;
+  border: 1px solid #ececec;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,.05);
+  overflow: hidden;
+  transition: transform .15s ease, box-shadow .15s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(0,0,0,.08);
+  }
+
+  img, .thumb-placeholder {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    background: #f7f7f7;
+  }
+
+  h3   { margin: .9rem 1rem .4rem; font-size: 1.15rem; }
+  p    { margin: 0 1rem 1.2rem; color: #666; }
+  .button {
+    margin: 0 1rem 1.2rem;
+    display: inline-block;
+  }
+}
