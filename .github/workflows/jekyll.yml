@@ -1,0 +1,61 @@
+name: Build & Deploy Jekyll site
+
+# ── Run every time you push to the default branch ──────────────
+on:
+  push:
+    branches: [ "main" ]       # <-- change if your default branch is not main
+
+# ── Required permissions for GitHub Pages deployment ───────────
+permissions:
+  contents: read
+  pages: write
+  id-token: write    # OIDC for the deploy action
+
+# Avoid two concurrent publishes
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # --- Install Ruby & bundle cache -------------------------
+      - name: Set up Ruby ↧
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'        # safe modern runtime
+          bundler-cache: true        # enables gem cache
+          cache-version: 1           # bump this to 2, 3… if your gem set changes
+
+      # --- Install dependencies --------------------------------
+      - name: Install gems
+        run: bundle install --jobs 4 --retry 3
+
+      # --- Build the site --------------------------------------
+      - name: Build with Jekyll
+        run: bundle exec jekyll build -d _site
+
+      # --- Upload generated HTML as artifact -------------------
+      - name: Upload _site artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: _site                # this is the folder from the build step
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v2
