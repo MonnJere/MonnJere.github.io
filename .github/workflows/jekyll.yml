@@ -3,7 +3,7 @@ name: Build & Deploy Jekyll site
 # ── Run every time you push to the default branch ──────────────
 on:
   push:
-    branches: [ "main" ]       # <-- change if your default branch is not main
+    branches: [ "gh-pages" ]       
 
 # ── Required permissions for GitHub Pages deployment ───────────
 permissions:
