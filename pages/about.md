@@ -4,7 +4,7 @@ title:  ""
 permalink: /about/
 sidebar: none
 header:
-  title: About Me
+  title: About Me 
   image_fullwidth: header_roadmap_3.jpg
 
 ---
